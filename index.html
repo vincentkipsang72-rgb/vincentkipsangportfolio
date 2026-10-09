@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vincent Kipsang Koech | IT Professional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#f7f1e6;--paper:#fffaf0;--brown:#3b2a20;--terra:#b5563a;--gold:#c9a24a;--muted:#6b5a4c;--line:#e6dac6}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--brown);font-family:Inter,system-ui,sans-serif;line-height:1.7;overflow-x:hidden}
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:700;line-height:1.2}
+a{color:var(--terra);text-decoration:none}
+section{padding:96px 8vw;position:relative;z-index:1}
+.wrap{max-width:1100px;margin:0 auto}
+.eyebrow{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:12px}
+h2{font-size:clamp(2rem,4vw,2.8rem);margin-bottom:28px}
+h2::after{content:"";display:block;width:56px;height:3px;background:var(--gold);margin-top:14px}
+
+/* loader */
+#loader{position:fixed;inset:0;background:var(--cream);display:flex;align-items:center;justify-content:center;z-index:999;animation:hideLoader .8s ease 1.1s forwards}
+#loader span{font-family:'Playfair Display',serif;font-size:2.2rem;animation:fadeIn .8s ease both}
+@keyframes hideLoader{to{opacity:0;visibility:hidden}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* particles */
+#particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.p{position:absolute;bottom:-20px;border-radius:50%;background:radial-gradient(circle,var(--gold),transparent 70%);opacity:0;animation:float linear infinite}
+@keyframes float{0%{transform:translate(0,0);opacity:0}15%{opacity:.5}85%{opacity:.35}100%{transform:translate(40px,-110vh);opacity:0}}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:16px 8vw;background:rgba(247,241,230,.88);backdrop-filter:blur(8px);border-bottom:1px solid transparent;transition:border-color .3s}
+nav.scrolled{border-color:var(--line)}
+.logo{font-family:'Playfair Display',serif;font-weight:700;font-size:1.2rem}
+.logo span{color:var(--terra)}
+nav ul{display:flex;gap:26px;list-style:none;flex-wrap:wrap}
+nav a{color:var(--brown);font-size:.9rem;font-weight:500;position:relative}
+nav a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--gold);transition:width .3s}
+nav a:hover::after,nav a.active::after{width:100%}
+
+/* hero */
+#home{min-height:100vh;display:flex;align-items:center;padding-top:120px}
+.hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:60px;align-items:center}
+.hero-name{font-size:clamp(2.8rem,7vw,5.2rem);background:linear-gradient(90deg,var(--brown) 0%,var(--brown) 40%,var(--gold) 50%,var(--brown) 60%,var(--brown) 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 3.5s ease-in-out 1.6s infinite}
+@keyframes shimmer{0%{background-position:100% 0}100%{background-position:-100% 0}}
+.hero-title{font-size:1.15rem;color:var(--terra);font-weight:500;margin:16px 0 12px}
+.hero-line{font-size:1.05rem;color:var(--muted);max-width:560px;margin-bottom:32px}
+.btn{display:inline-block;padding:12px 28px;border-radius:40px;font-weight:600;font-size:.92rem;margin:0 12px 12px 0;transition:transform .25s,box-shadow .25s}
+.btn-primary{background:var(--brown);color:var(--paper)}
+.btn-ghost{border:1.5px solid var(--brown);color:var(--brown)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(59,42,32,.18)}
+.avatar-wrap{position:relative;width:260px;height:260px;margin:0 auto}
+.avatar{width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,var(--terra),var(--brown));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:4.5rem;color:var(--cream);position:relative;z-index:2}
+.ring{position:absolute;inset:-18px;border-radius:50%;border:2px solid var(--gold);animation:pulse 2.8s ease-out infinite}
+.ring.r2{animation-delay:1.4s}
+@keyframes pulse{0%{transform:scale(.92);opacity:.8}100%{transform:scale(1.15);opacity:0}}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s ease,transform .9s ease}
+.reveal.in{opacity:1;transform:none}
+
+.about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:48px}
+.about-grid p{margin-bottom:16px;color:var(--muted)}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:28px;margin-bottom:20px}
+.card h3{font-size:1.1rem;margin-bottom:6px}
+.card small{display:block;color:var(--muted);font-size:.85rem;margin-bottom:14px}
+.tag{display:inline-block;background:var(--cream);border:1px solid var(--line);padding:4px 12px;border-radius:20px;font-size:.8rem;margin:4px 4px 0 0}
+ul.clean{list-style:none}
+ul.clean li{padding-left:18px;position:relative;margin-bottom:8px;color:var(--muted);font-size:.95rem}
+ul.clean li::before{content:"";position:absolute;left:0;top:11px;width:7px;height:7px;background:var(--gold);border-radius:50%}
+
+/* skills */
+.skills-section{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px 56px}
+.skill-head{display:flex;justify-content:space-between;font-weight:500;font-size:.95rem;margin-bottom:8px}
+.bar{height:8px;background:var(--line);border-radius:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--terra));border-radius:8px;transition:width 1.4s cubic-bezier(.22,.8,.3,1)}
+.certs{margin-top:48px}
+.certs h3{font-size:1.3rem;margin-bottom:14px}
+
+/* experience */
+.timeline{position:relative;padding-left:28px;border-left:2px solid var(--line)}
+.job{position:relative;margin-bottom:46px}
+.job::before{content:"";position:absolute;left:-37px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px var(--cream)}
+.job h3{font-size:1.3rem}
+.job .meta{color:var(--terra);font-weight:600;font-size:.9rem;margin:4px 0 12px}
+.job .meta em{color:var(--muted);font-weight:400;font-style:normal}
+details summary{cursor:pointer;color:var(--terra);font-weight:600;font-size:.9rem;list-style:none;margin-top:6px}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:" +"}
+details[open] summary::after{content:" \2212"}
+details ul{margin-top:12px}
+
+/* projects */
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.project{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:30px;transition:box-shadow .4s,border-color .4s,transform .4s}
+.project:hover{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),0 0 28px rgba(201,162,74,.45);transform:translateY(-4px)}
+.project .num{font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);font-style:italic}
+.project h3{font-size:1.15rem;margin:8px 0}
+.project p{color:var(--muted);font-size:.93rem}
+
+/* contact */
+#contact{text-align:center}
+#contact p{color:var(--muted);max-width:560px;margin:0 auto 32px}
+.contact-list{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-bottom:12px}
+.contact-list a,.contact-list span{background:var(--paper);border:1px solid var(--line);padding:12px 22px;border-radius:40px;font-size:.92rem;color:var(--brown);transition:border-color .3s}
+.contact-list a:hover{border-color:var(--gold)}
+footer{text-align:center;padding:28px;font-size:.82rem;color:var(--muted);border-top:1px solid var(--line);position:relative;z-index:1}
+
+@media (max-width:860px){
+ .hero-grid,.about-grid,.skills-grid{grid-template-columns:1fr}
+ .hero-grid .avatar-wrap{order:-1;width:200px;height:200px}
+ .avatar{font-size:3.4rem}
+ .projects-grid{grid-template-columns:1fr}
+ .skills-grid{gap:22px}
+ nav{padding:14px 5vw}
+ nav ul{gap:12px}
+ section{padding:72px 6vw}
+}
+@media (max-width:480px){.logo{font-size:1rem}nav a{font-size:.8rem}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}#loader{display:none}}
+</style>
+</head>
+<body>
+
+<div id="loader"><span>VK</span></div>
+<div id="particles"></div>
+
+<nav id="nav">
+  <div class="logo">VK<span>.</span></div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="home">
+  <div class="wrap hero-grid reveal">
+    <div>
+      <div class="eyebrow">Hello, I'm</div>
+      <h1 class="hero-name">Vincent Kipsang Koech</h1>
+      <p class="hero-title">IT Professional &middot; Temenos T24 Specialist</p>
+      <p class="hero-line">I keep core banking systems running, networks humming and teams moving, from T24 code and QA to help-desk calm under pressure.</p>
+      <a class="btn btn-primary" href="#experience">View Experience</a>
+      <a class="btn btn-ghost" href="#contact">Get in Touch</a>
+    </div>
+    <div class="avatar-wrap">
+      <div class="ring"></div>
+      <div class="ring r2"></div>
+      <div class="avatar">VK</div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap reveal">
+    <div class="eyebrow">About Me</div>
+    <h2>Building reliable tech, one system at a time</h2>
+    <div class="about-grid">
+      <div>
+        <p>I am an IT professional with a BSc in Information Technology from Murang'a University of Technology. My hands-on work spans networking, cybersecurity, database management, cloud computing and Temenos T24 core banking systems.</p>
+        <p>I adapt quickly to new technologies, bring strong problem-solving skills, and have a track record of managing complex technical tasks under pressure. I work well both independently and in teams, and I care about delivering results that hold up.</p>
+        <p>Outside work I enjoy mentoring and coaching, travelling, gaming and reading articles.</p>
+      </div>
+      <div>
+        <div class="card">
+          <h3>Bachelor of Science in IT</h3>
+          <small>Murang'a University of Technology &middot; 2014 to 2018 &middot; Second Class (Upper Division)</small>
+          <h3>KCSE, B+</h3>
+          <small>St Francis Boys High School, Suwerwa &middot; 2010 to 2013</small>
+          <h3>KCPE, 339 points</h3>
+          <small>Kapkarwa Primary School &middot; 2002 to 2009</small>
+        </div>
+        <div class="card">
+          <h3>Languages</h3>
+          <small>English (Advanced) &middot; Swahili (Native)</small>
+          <span class="tag">Mentoring</span><span class="tag">Coaching</span><span class="tag">Travel</span><span class="tag">Gaming</span><span class="tag">Reading</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="skills-section">
+  <div class="wrap reveal">
+    <div class="eyebrow">Skills</div>
+    <h2>What I bring to the table</h2>
+    <div class="skills-grid">
+      <div><div class="skill-head"><span>Temenos T24</span><span>90%</span></div><div class="bar"><i data-w="90"></i></div></div>
+      <div><div class="skill-head"><span>Microsoft Office 365</span><span>90%</span></div><div class="bar"><i data-w="90"></i></div></div>
+      <div><div class="skill-head"><span>LAN/WAN Networking</span><span>85%</span></div><div class="bar"><i data-w="85"></i></div></div>
+      <div><div class="skill-head"><span>QA &amp; Testing</span><span>85%</span></div><div class="bar"><i data-w="85"></i></div></div>
+      <div><div class="skill-head"><span>Windows &amp; Linux Administration</span><span>82%</span></div><div class="bar"><i data-w="82"></i></div></div>
+      <div><div class="skill-head"><span>Databases (MySQL, Postgres)</span><span>70%</span></div><div class="bar"><i data-w="70"></i></div></div>
+      <div><div class="skill-head"><span>Cloud (AWS, Azure, GCP)</span><span>65%</span></div><div class="bar"><i data-w="65"></i></div></div>
+      <div><div class="skill-head"><span>Cybersecurity</span><span>60%</span></div><div class="bar"><i data-w="60"></i></div></div>
+    </div>
+    <div class="certs">
+      <h3>Certifications &amp; Training</h3>
+      <span class="tag">Temenos T24 Functional &amp; Technical</span>
+      <span class="tag">AWS Certified Cloud Practitioner</span>
+      <span class="tag">Huawei HCIA Routing &amp; Switching</span>
+      <span class="tag">Microsoft Certified: Azure Fundamentals</span>
+      <span class="tag">Google Cloud Associate</span>
+      <span class="tag">Aviatrix ACE Associate</span>
+      <span class="tag">Moody's Analytics</span>
+      <span class="tag">Vertiv IT Infrastructure</span>
+      <span class="tag">Radware</span>
+      <span class="tag">Project Management Fundamentals</span>
+      <span class="tag">UNIX/Linux, Networking &amp; DNS</span>
+      <span class="tag">Intro to Cyber Security (KENET)</span>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap reveal">
+    <div class="eyebrow">Experience</div>
+    <h2>Where I've worked</h2>
+    <div class="timeline">
+
+      <div class="job">
+        <h3>Assistant Software Professional</h3>
+        <div class="meta">Inlaks Computers Limited <em>&middot; July 2025 to Sep 2026</em></div>
+        <ul class="clean">
+          <li>Develop and maintain T24 routines, versions and enquiries across banking modules.</li>
+          <li>Provide day-to-day application support for live T24 environments, resolving system errors, failed batch jobs and Close of Business issues.</li>
+          <li>Write and test OFS scripts for external system integration.</li>
+        </ul>
+        <details>
+          <summary>More responsibilities</summary>
+          <ul class="clean">
+            <li>Customize T24 browser screens and templates to meet client-specific banking requirements.</li>
+            <li>Manage user access rights and security permissions within T24.</li>
+            <li>Support unit, system integration and user acceptance testing during rollouts.</li>
+            <li>Maintain technical documentation and assist with T24 upgrade and patching projects.</li>
+            <li>Generate reports for business and regulatory needs, and reconcile data between systems.</li>
+            <li>Liaise with client bank IT teams and take part in go-live and post-implementation support.</li>
+          </ul>
+        </details>
+      </div>
+
+      <div class="job">
+        <h3>IT Specialist</h3>
+        <div class="meta">Barry Developers and Construction Co. Ltd <em>&middot; June 2023 to May 2025</em></div>
+        <ul class="clean">
+          <li>Designed, implemented and supported LAN/WAN networks, troubleshooting and resolving connectivity issues.</li>
+          <li>Resolved end-user technical issues and maintained a help-desk system for timely responses.</li>
+        </ul>
+        <details>
+          <summary>More responsibilities</summary>
+          <ul class="clean">
+            <li>Installed, tested and repaired network hardware and ICT equipment.</li>
+            <li>Provided training, user support and system setup for employee onboarding.</li>
+            <li>Managed licenses and subscriptions for software tools and applications.</li>
+            <li>Developed and implemented disaster recovery plans and procedures.</li>
+            <li>Created reports on system performance, incidents and resolutions.</li>
+          </ul>
+        </details>
+      </div>
+
+      <div class="job">
+        <h3>Quality Assurance</h3>
+        <div class="meta">Liquid Intelligent Technologies <em>&middot; July 2021 to May 2023</em></div>
+        <ul class="clean">
+          <li>Created test plans, cases, scripts and strategies, working closely with developers and product managers.</li>
+          <li>Performed functional, regression, integration and performance testing, and logged defects with clear reproduction steps.</li>
+        </ul>
+        <details>
+          <summary>More responsibilities</summary>
+          <ul class="clean">
+            <li>Monitored application performance metrics to identify bottlenecks and scalability issues.</li>
+            <li>Developed and maintained automated test scripts and frameworks to improve efficiency.</li>
+            <li>Worked with customer support teams to investigate and replicate reported issues.</li>
+            <li>Proposed new testing techniques and best practices during retrospectives.</li>
+          </ul>
+        </details>
+      </div>
+
+      <div class="job">
+        <h3>ICT Officer II Trainee</h3>
+        <div class="meta">ICT Authority <em>&middot; July 2019 to June 2021</em></div>
+        <ul class="clean">
+          <li>Administered the station network, including backup, security, user accounts and e-mail systems.</li>
+          <li>Installed, upgraded and repaired LAN and WAN hardware and infrastructure.</li>
+        </ul>
+        <details>
+          <summary>More responsibilities</summary>
+          <ul class="clean">
+            <li>Supported computer network management, audio-visual and call centre systems.</li>
+            <li>Trained station staff on basic network troubleshooting and system use.</li>
+            <li>Coordinated development and maintenance of network benchmark standards.</li>
+          </ul>
+        </details>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="skills-section">
+  <div class="wrap reveal">
+    <div class="eyebrow">Projects</div>
+    <h2>Selected deliveries</h2>
+    <div class="projects-grid">
+      <div class="project">
+        <div class="num">01</div>
+        <h3>Data Centre Infrastructure Management</h3>
+        <p>Delivered a DCIM solution for Telkom on Eaton technology, improving monitoring, energy efficiency and uptime across critical facilities.</p>
+      </div>
+      <div class="project">
+        <div class="num">02</div>
+        <h3>Solar PV &amp; Battery Storage</h3>
+        <p>Delivered a solar PV and battery energy storage (BESS) solution for KMTC, including inverters, cutting grid dependency and energy costs.</p>
+      </div>
+      <div class="project">
+        <div class="num">03</div>
+        <h3>Visitor Management System</h3>
+        <p>Delivered a visitor management system for Gertrude's Children's Hospital, enhancing security, access control and visitor tracking.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap reveal">
+    <div class="eyebrow">Contact</div>
+    <h2 style="display:inline-block">Let's connect</h2>
+    <p style="margin-top:24px">Open to IT roles in core banking, systems support, networking and quality assurance. Reach out any time.</p>
+    <div class="contact-list">
+      <a href="mailto:vincentkipsang72@gmail.com">vincentkipsang72@gmail.com</a>
+      <a href="tel:+254704551178">+254 704 551 178</a>
+      <a href="tel:+254727766152">+254 727 766 152</a>
+      <span>P.O. Box 1237-30200, Kitale, Kenya</span>
+    </div>
+  </div>
+</section>
+
+<footer>&copy; 2026 Vincent Kipsang Koech</footer>
+
+<script>
+// Floating particles
+const pWrap = document.getElementById('particles');
+for (let i = 0; i < 22; i++) {
+  const p = document.createElement('span');
+  p.className = 'p';
+  const size = 4 + Math.random() * 10;
+  p.style.cssText = `left:${Math.random()*100}%;width:${size}px;height:${size}px;animation-duration:${14+Math.random()*12}s;animation-delay:${-Math.random()*20}s`;
+  pWrap.appendChild(p);
+}
+
+// Scroll reveal
+const revealIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); revealIO.unobserve(e.target); }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => revealIO.observe(el));
+
+// Skill bars animate when in view
+const barIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.width = e.target.dataset.w + '%';
+      barIO.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.4 });
+document.querySelectorAll('.bar i').forEach(el => barIO.observe(el));
+
+// Nav: shadow on scroll and active section highlight
+const nav = document.getElementById('nav');
+const links = document.querySelectorAll('nav a');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+}, { passive: true });
+
+const navIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px' });
+document.querySelectorAll('section[id]').forEach(s => navIO.observe(s));
+</script>
+</body>
+</html>
